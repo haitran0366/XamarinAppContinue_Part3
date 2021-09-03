@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:vm1="clr-namespace:XamarinAppContinue_Part3.ViewModel"
+             x:Class="XamarinAppContinue_Part3.View.LoginPage">
+    <ContentPage.BindingContext>
+        <vm1:LoginPageViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="LOGIN" HorizontalOptions="Center" FontSize="Title" Margin="0,30,0,10"/>
+            <Entry x:Name="userNameEntry" Text="{Binding UserName}" Placeholder="User Name" Margin="10,10" ReturnType="Next">
+
+            </Entry>
+            <Entry x:Name="passwordEntry" Text="{Binding Password}" Placeholder="Password" Margin="10,10"
+                   IsPassword="True"></Entry>
+
+            <Label x:Name="LoginMessageLabel" Text="{Binding LoginMessage, Mode=OneWay}" IsVisible="{Binding TurnLoginMessage, Mode=OneWay}" TextColor="Red" Margin="10,0,0,0"/>
+
+            <ImageButton HorizontalOptions="End" VerticalOptions="Center" HeightRequest="30" Margin="0,0,20,0"
+                         Command="{Binding cmdSetting}">
+                <ImageButton.Source>
+                    <OnPlatform x:TypeArguments="ImageSource"
+                                        iOS="settingIcon.png"
+                                        Android="settingIcon.png"/>
+                </ImageButton.Source>
+
+            </ImageButton>
+
+            <Button x:Name="loginButton" Text="LOGIN" TextColor="White" BackgroundColor="#009900" Margin="10,10,10,10"
+                    Command="{Binding cmdLogin}"/>
+
+            <Button x:Name="createAccount" Text="CREATE ACCOUNT" Margin="10,10,10,10"
+                    Command="{Binding cmdCreateAccount}"/>
+            <Label Text="Forgot password" TextColor="Blue" HorizontalOptions="Center">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding cmdForgotPassword}"/>
+                </Label.GestureRecognizers>
+            </Label>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
